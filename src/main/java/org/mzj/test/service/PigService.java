@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 @Service("pig")
 public class PigService implements AnimalService {
     @Override
-    public void call() {
-        System.out.println("哼哼哼");
+    public String call() {
+        String msg = "哼哼哼";
+        System.out.println(msg);
+        return msg;
     }
 }

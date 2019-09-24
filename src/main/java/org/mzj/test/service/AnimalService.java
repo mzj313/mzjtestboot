@@ -5,5 +5,5 @@ package org.mzj.test.service;
  * @date 2018/12/14
  */
 public interface AnimalService {
-    void call();
+    String call();
 }

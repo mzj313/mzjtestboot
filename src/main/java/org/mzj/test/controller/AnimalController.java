@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author mzj
  * @date 2018/12/14
@@ -25,10 +29,11 @@ public class AnimalController {
 
     @RequestMapping("/call")
     public String call(){
-        catServiceImpl.call();
-        dogService.call();
-        pig.call();
-        pig1.call();
-        return "success";
+        List<String> msgs = new ArrayList<>();
+        msgs.add(catServiceImpl.call());
+        msgs.add(dogService.call());
+        msgs.add(pig.call());
+        msgs.add(pig1.call());
+        return msgs.stream().collect(Collectors.joining("\n")) + "\n";
     }
 }

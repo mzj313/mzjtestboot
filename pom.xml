@@ -92,6 +92,31 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+
+            <!-- docker的maven插件 -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
+                    <imageName>mzj:5000/${project.artifactId}</imageName>
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <baseImage>openjdk:8-jre-alpine</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <!-- 与maven配置文件settings.xml一致 -->
+                    <serverId>myregistry</serverId>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
