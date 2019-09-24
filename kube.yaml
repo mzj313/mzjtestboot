@@ -1,34 +1,36 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {APP_NAME}-service
+  name: mzjtestboot-service
 spec:
   type: NodePort
   ports:
-  - name: {APP_NAME}
-    port: 8081
-    nodePort: 31002
-    targetPort: 8081
-    protocol: TCP
+    - name: mzjtestboot
+      port: 8280
+      targetPort: 8280
+      protocol: TCP
   selector:
-    app: {APP_NAME}
+    app: mzjtestboot
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {APP_NAME}-deployment
+  name: mzjtestboot-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: mzjtestboot
   template:
     metadata:
       labels:
-        app: {APP_NAME}
+        app: mzjtestboot
     spec:
       containers:
-        - name: {APP_NAME}
-          image: mzjvm:5000/{APP_NAME}:latest
+        - name: mzjtestboot
+          image: mzjvm:5000/mzjtestboot:latest
           ports:
-          - containerPort: 8081
+            - containerPort: 8280
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: {SPRING_PROFILE}
+              value:
