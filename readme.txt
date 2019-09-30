@@ -8,9 +8,13 @@ docker run -d -p 8280:8280 -m 256M --name mzjtestboot mzj:5000/mzjtestboot
 java -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -version | grep MaxHeapSize
 # 结果是 1G / 4 = 256M
 
-访问测试地址:
-curl http://localhost:8280/mzjtestboot/
-curl http://localhost:8280/mzjtestboot/animal/call
+测试:
+先 kubectl get services 获取到 service地址和端口
+NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+mzjtestboot-service   NodePort    10.97.33.156   <none>        8280:31985/TCP   5d16h
+访问地址:
+curl http://10.97.33.156:8280/mzjtestboot/
+curl http://10.97.33.156:8280/mzjtestboot/animal/call
 
 部署Docker Image
 kubectl create -f kube.yaml
