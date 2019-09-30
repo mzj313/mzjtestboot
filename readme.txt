@@ -21,3 +21,11 @@ kubectl get pods
 kubectl get services
 kubectl describe pod mzjtestboot-deployment-5bccbcdf89-xrpzx
 kubectl describe service mzjtestboot-service
+
+使用dashboard:
+kubectl create -f kubernetes-dashboard.yaml
+kubectl create -f k8s-admin.yaml
+获取token:
+kubectl describe serviceaccount admin -n kube-system
+kubectl describe secret admin-token-pkkhl -n kube-system
+访问 https://mzjvm:30001/#!/login 或 http://mzjvm:30002/#!/login

@@ -118,8 +118,13 @@ spec:
         ports:
         - containerPort: 8443
           protocol: TCP
+        # mzj add
+        - containerPort: 9090
+            protocol: TCP
+            name: http
         args:
-          - --auto-generate-certificates
+          # mzj del
+          # - --auto-generate-certificates
           # Uncomment the following line to manually specify Kubernetes API server Host
           # If not specified, Dashboard will attempt to auto discover the API server and connect
           # to it. Uncomment only if the default does not work.
@@ -167,5 +172,10 @@ spec:
       targetPort: 8443
       # mzj add
       nodePort: 30001
+      name: https
+    - port: 80
+      targetPort: 9090
+      nodePort: 30002
+      name: http
   selector:
     k8s-app: kubernetes-dashboard
