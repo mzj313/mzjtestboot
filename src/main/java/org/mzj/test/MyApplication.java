@@ -8,6 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+/**
+ *  加入 -XX:TieredStopAtLevel=1 -noverify 加快启动速度
+ * @author mzj
+ */
 @SpringBootApplication
 public class MyApplication {
     public static void main(String[] args) {
