@@ -23,12 +23,14 @@ public class RootController {
     /*
     @RequestMapping("/")
     public String index1() {
+	    System.out.println("index1...");
         return "success1";
     }
     */
 
     @RequestMapping("")
     public String index2() {
+    	System.out.println("index2...");
         InetAddress host = null;
         try {
             host = Inet4Address.getLocalHost();
